@@ -88,15 +88,6 @@ alert("csdc")
           <label htmlFor="">Date of Birth</label>
           <input type="date" id='dob' required value={formdata.id}  onChange={getdata}/><br />
           <button className='submit-button' >Submit</button>
-          {/*           <label htmlFor="">Username</label>
-          <input type="text" name='username' id='username' required value={formdata.username}  onChange={getdata}/><br />
-          <label htmlFor="">Email Address</label>
-          <input type="email" name='email' id='email'required value={formdata.email}  onChange={getdata}/><br />
-          <label htmlFor="">Phone Number</label>
-          <input type="number" name='dob' id='dob' required value={formdata.dob}  onChange={getdata}/><br />
-          <label htmlFor="">Date of Birth</label>
-          <input type="date" name='phone' id='phone' required value={formdata.phone}  onChange={getdata}/><br />
-          <button className='submit-button'>Submit</button> */}
         </form>
 
 
