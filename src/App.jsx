@@ -1,33 +1,108 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import {  Modal } from '@mui/material'; 
 function App() {
-  const [count, setCount] = useState(0)
+  const [formdata,setFormdata]=useState({})
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+const getdata=(e)=>{
+
+const {id,value}=e.target
+
+
+
+setFormdata((prev)=>({
+
+ ...prev,
+ [id]:value
+
+}))
+
+
+
+}
+
+
+  function datahandler(e){
+alert("csdc")
+    if(Number(formdata.phone.length)===10){
+      e.preventDefault()
+      //setFormdata({username:"",email:"",dob:"",phone:""})
+
+
+    }
+ 
+    else{
+      alert("Invalid phone number. Please enter a 10-digit phone number.")
+    }
+
+    if(checkdob(formdata.dob)){
+
+       e.preventDefault()
+
+    }
+
+    else{
+      alert("Invalid date of birth. Date of birth cannot be in the future")
+    }
+    
+    
+   
+    
+
+  }
+
+
+  function checkdob(dob){
+
+    const todate=new Date()
+    const indate=new Date(dob)
+
+    
+
+    if(indate.getTime()>todate.getTime()) return false
+
+    return true
+
+
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+     
+<div className="modal">
+      <h1>User Details Modal</h1>
+      <button onClick={openModal}>Open Form</button>
+     <Modal  open={isModalOpen} onClose={closeModal}><div className="modal-content">
+        <h1>Fill Details</h1>
+        <form action="" onSubmit={datahandler}>
+          <label htmlFor="">Username</label>
+          <input type="text"  id='username' required value={formdata.id}  onChange={getdata}/><br />
+          <label htmlFor="">Email Address</label>
+          <input type="email" id='email'required value={formdata.id}  onChange={getdata}/><br />
+          <label htmlFor="">Phone Number</label>
+          <input type="number" id='phone' required value={formdata.id}  onChange={getdata}/><br />
+          <label htmlFor="">Date of Birth</label>
+          <input type="date" id='dob' required value={formdata.id}  onChange={getdata}/><br />
+          <button className='submit-button' >Submit</button>
+          {/*           <label htmlFor="">Username</label>
+          <input type="text" name='username' id='username' required value={formdata.username}  onChange={getdata}/><br />
+          <label htmlFor="">Email Address</label>
+          <input type="email" name='email' id='email'required value={formdata.email}  onChange={getdata}/><br />
+          <label htmlFor="">Phone Number</label>
+          <input type="number" name='dob' id='dob' required value={formdata.dob}  onChange={getdata}/><br />
+          <label htmlFor="">Date of Birth</label>
+          <input type="date" name='phone' id='phone' required value={formdata.phone}  onChange={getdata}/><br />
+          <button className='submit-button'>Submit</button> */}
+        </form>
+
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+</Modal>
+</div>
     </>
   )
 }
