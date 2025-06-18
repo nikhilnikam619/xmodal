@@ -27,7 +27,7 @@ setFormdata((prev)=>({
 
 
   function datahandler(e){
-alert("csdc")
+//alert("csdc")
     if(Number(formdata.phone.length)===10){
       e.preventDefault()
       //setFormdata({username:"",email:"",dob:"",phone:""})
@@ -76,7 +76,8 @@ alert("csdc")
 <div className="modal">
       <h1>User Details Modal</h1>
       <button onClick={openModal}>Open Form</button>
-     <Modal  open={isModalOpen} onClose={closeModal}><div className="modal-content">
+<div className="modal-content">
+       <Modal  open={isModalOpen} onClose={closeModal}></Modal>
         <h1>Fill Details</h1>
         <form action="" onSubmit={datahandler}>
           <label htmlFor="">Username</label>
@@ -89,10 +90,10 @@ alert("csdc")
           <input type="date" id='dob' required value={formdata.id}  onChange={getdata}/><br />
           <button className='submit-button' >Submit</button>
         </form>
-
+</Modal>
 
       </div>
-</Modal>
+
 </div>
     </>
   )
