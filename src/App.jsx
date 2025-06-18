@@ -76,9 +76,7 @@ setFormdata((prev)=>({
 <div className="modal">
       <h1>User Details Modal</h1>
       <button onClick={openModal}>Open Form</button>
-     <Modal  open={isModalOpen} onClose={closeModal}  BackdropProps={{
-    'data-testid': 'modal-backdrop'
-  }}><div className="modal-content">
+     <Modal  open={isModalOpen} onClose={closeModal}  hideBackdrop={false}><div className="modal-content">
         <h1>Fill Details</h1>
         <form action="" onSubmit={datahandler}>
           <label htmlFor="">Username</label>
