@@ -69,15 +69,11 @@ setFormdata((prev)=>({
 
 
   }
- const handleRootClick = () => {
-    if (isModalOpen) {
-      closeModal();
-    }
-  };
+
 
   return (
     <>
-    <div id="root" onClick={handleRootClick} style={{ height: '100vh' }}>  
+    
 <div className="modal">
       <h1>User Details Modal</h1>
       <button onClick={openModal}>Open Form</button>
@@ -104,7 +100,7 @@ setFormdata((prev)=>({
       </div>
 </Modal>
 </div>
-</div>
+
     </>
   )
 }
