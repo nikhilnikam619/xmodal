@@ -76,8 +76,9 @@ setFormdata((prev)=>({
 <div className="modal">
       <h1>User Details Modal</h1>
       <button onClick={openModal}>Open Form</button>
-<div className="modal-content">
-       <Modal  open={isModalOpen} onClose={closeModal}></Modal>
+     <Modal  open={isModalOpen} onClose={closeModal}  BackdropProps={{
+    'data-testid': 'modal-backdrop'
+  }}><div className="modal-content">
         <h1>Fill Details</h1>
         <form action="" onSubmit={datahandler}>
           <label htmlFor="">Username</label>
@@ -90,10 +91,10 @@ setFormdata((prev)=>({
           <input type="date" id='dob' required value={formdata.id}  onChange={getdata}/><br />
           <button className='submit-button' >Submit</button>
         </form>
-</Modal>
+
 
       </div>
-
+</Modal>
 </div>
     </>
   )
