@@ -79,10 +79,7 @@ setFormdata((prev)=>({
       <button onClick={openModal}>Open Form</button>
      <Modal  open={isModalOpen} onClose={closeModal}   aria-labelledby="modal-title"
   aria-describedby="modal-description"
-  BackdropProps={{
-    id: 'modal-backdrop',
-     sx: { pointerEvents: 'none' },
-  }}><div className="modal-content" onClick={(e) => e.stopPropagation()} >
+ ><div className="modal-content" onClick={(e) => e.stopPropagation()} >
         <h1>Fill Details</h1>
         <form action="" onSubmit={datahandler}>
           <label htmlFor="">Username</label>
