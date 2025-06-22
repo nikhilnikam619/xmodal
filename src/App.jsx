@@ -74,7 +74,7 @@ setFormdata((prev)=>({
   return (
     <>
     
-<div className="modal">
+<div className={isModalOpen?"modal":""}>
       <h1>User Details Modal</h1>
       <button onClick={openModal}>Open Form</button>
      <Modal  open={isModalOpen} onClose={closeModal}   aria-labelledby="modal-title"
