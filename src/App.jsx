@@ -176,7 +176,7 @@
 // export default App
 import { useState } from 'react';
 import './App.css';
-import { Modal } from '@mui/material';
+import { Modal, Box } from '@mui/material';
 
 function App() {
   const [formdata, setFormdata] = useState({});
@@ -190,41 +190,40 @@ function App() {
     setFormdata((prev) => ({ ...prev, [id]: value }));
   };
 
-  function datahandler(e) {
-    e.preventDefault();
+  const checkdob = (dob) => {
+    const today = new Date();
+    const input = new Date(dob);
+    return input.getTime() <= today.getTime();
+  };
 
+  const datahandler = (e) => {
+    e.preventDefault();
     const { username, email, phone, dob } = formdata;
 
     if (!username || !email || !phone || !dob) {
-      alert("Please fill out all fields.");
+      alert('Please fill out all fields.');
       return;
     }
 
     if (!email.includes('@')) {
-      alert("Invalid email. Please check your email address.");
+      alert('Invalid email. Please check your email address.');
       return;
     }
 
     if (phone.length !== 10) {
-      alert("Invalid phone number. Please enter a 10-digit phone number.");
+      alert('Invalid phone number. Please enter a 10-digit phone number.');
       return;
     }
 
     if (!checkdob(dob)) {
-      alert("Invalid date of birth. Date of birth cannot be in the future");
+      alert('Invalid date of birth. Date of birth cannot be in the future');
       return;
     }
 
-    alert("Form submitted successfully!");
+    alert('Form submitted successfully!');
     setFormdata({});
     setIsModalOpen(false);
-  }
-
-  function checkdob(dob) {
-    const today = new Date();
-    const inputDate = new Date(dob);
-    return inputDate.getTime() <= today.getTime();
-  }
+  };
 
   return (
     <>
@@ -239,8 +238,14 @@ function App() {
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
       >
-        <div className="modal" onClick={closeModal} data-testid="modal">
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        {/* outer div for Cypress - "modal" */}
+        <div className="modal" onClick={closeModal}>
+          {/* inner div for form - "modal-content" */}
+          <div
+            className="modal-content"
+            data-testid="modal"
+            onClick={(e) => e.stopPropagation()} // prevents closing when clicking inside
+          >
             <h1>Fill Details</h1>
             <form onSubmit={datahandler}>
               <label>Username</label>
