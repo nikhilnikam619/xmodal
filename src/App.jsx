@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { Modal } from '@mui/material';
+import { Modal, Backdrop } from '@mui/material';
 
 function App() {
   const [formdata, setFormdata] = useState({});
@@ -16,6 +16,7 @@ function App() {
 
   function datahandler(e) {
     e.preventDefault();
+
     if (Number(formdata.phone?.length) !== 10) {
       alert("Invalid phone number. Please enter a 10-digit phone number.");
       return;
@@ -46,48 +47,56 @@ function App() {
 
       <Modal
         open={isModalOpen}
-        onClose={closeModal} // ✅ This must be called when clicking outside
+        onClose={closeModal}
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+          onClick: closeModal, 
+        }}
       >
-        <div className="modal-content" data-testid="modal">
-          <h1>Fill Details</h1>
-          <form onSubmit={datahandler}>
-            <label>Username</label>
-            <input
-              type="text"
-              id="username"
-              required
-              value={formdata.username || ""}
-              onChange={getdata}
-            /><br />
-            <label>Email Address</label>
-            <input
-              type="email"
-              id="email"
-              required
-              value={formdata.email || ""}
-              onChange={getdata}
-            /><br />
-            <label>Phone Number</label>
-            <input
-              type="number"
-              id="phone"
-              required
-              value={formdata.phone || ""}
-              onChange={getdata}
-            /><br />
-            <label>Date of Birth</label>
-            <input
-              type="date"
-              id="dob"
-              required
-              value={formdata.dob || ""}
-              onChange={getdata}
-            /><br />
-            <button className="submit-button">Submit</button>
-          </form>
-        </div>
+        {isModalOpen && (
+          <div className="modal-content" data-testid="modal">
+            <h1>Fill Details</h1>
+            <form onSubmit={datahandler}>
+              <label>Username</label>
+              <input
+                type="text"
+                id="username"
+                required
+                value={formdata.username || ""}
+                onChange={getdata}
+              /><br />
+              <label>Email Address</label>
+              <input
+                type="email"
+                id="email"
+                required
+                value={formdata.email || ""}
+                onChange={getdata}
+              /><br />
+              <label>Phone Number</label>
+              <input
+                type="number"
+                id="phone"
+                required
+                value={formdata.phone || ""}
+                onChange={getdata}
+              /><br />
+              <label>Date of Birth</label>
+              <input
+                type="date"
+                id="dob"
+                required
+                value={formdata.dob || ""}
+                onChange={getdata}
+              /><br />
+              <button className="submit-button">Submit</button>
+            </form>
+          </div>
+        )}
       </Modal>
     </>
   );
