@@ -104,7 +104,6 @@
 
 // export default App
 
-
 import { useState } from 'react'
 import './App.css'
 import { Modal } from '@mui/material'
@@ -134,7 +133,6 @@ function App() {
       return
     }
 
-   
     alert("Form submitted successfully!")
     setFormdata({})
     setIsModalOpen(false)
@@ -148,34 +146,35 @@ function App() {
 
   return (
     <>
-      <div className={isModalOpen ? "modal" : ""}>
-        <h1>User Details Modal</h1>
-        <button data-testid="open-modal-button" onClick={openModal}>Open Form</button>
+      <h1>User Details Modal</h1>
+      <button data-testid="open-modal-button" onClick={openModal}>Open Form</button>
 
-        <Modal
-  open={isModalOpen}
-  onClose={closeModal}
-  aria-labelledby="modal-title"
-  aria-describedby="modal-description"
->
-  <div className="modal-content" data-testid="modal">
-    <h1>Fill Details</h1>
-    <form onSubmit={datahandler}>
-      <label>Username</label>
-      <input type="text" id="username" required value={formdata.username || ""} onChange={getdata} /><br />
-      <label>Email Address</label>
-      <input type="email" id="email" required value={formdata.email || ""} onChange={getdata} /><br />
-      <label>Phone Number</label>
-      <input type="number" id="phone" required value={formdata.phone || ""} onChange={getdata} /><br />
-      <label>Date of Birth</label>
-      <input type="date" id="dob" required value={formdata.dob || ""} onChange={getdata} /><br />
-      <button className="submit-button">Submit</button>
-    </form>
-  </div>
-</Modal>
-      </div>
+      <Modal
+        open={isModalOpen}
+        onClose={closeModal}
+        hideBackdrop={false}
+        disableEnforceFocus={true}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <div className="modal-content" data-testid="modal">
+          <h1>Fill Details</h1>
+          <form onSubmit={datahandler}>
+            <label>Username</label>
+            <input type="text" id="username" required value={formdata.username || ""} onChange={getdata} /><br />
+            <label>Email Address</label>
+            <input type="email" id="email" required value={formdata.email || ""} onChange={getdata} /><br />
+            <label>Phone Number</label>
+            <input type="number" id="phone" required value={formdata.phone || ""} onChange={getdata} /><br />
+            <label>Date of Birth</label>
+            <input type="date" id="dob" required value={formdata.dob || ""} onChange={getdata} /><br />
+            <button className="submit-button">Submit</button>
+          </form>
+        </div>
+      </Modal>
     </>
   )
 }
 
 export default App
+
