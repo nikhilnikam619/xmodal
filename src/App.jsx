@@ -56,47 +56,56 @@ function App() {
       </button>
 
       {isModalOpen && (
-        <div className="modal" onClick={closeModal} data-testid="modal">
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h1>Fill Details</h1>
-            <form onSubmit={datahandler}>
-              <label>Username</label>
-              <input
-                type="text"
-                id="username"
-                required
-                value={formdata.username || ''}
-                onChange={getdata}
-              /><br />
-              <label>Email Address</label>
-              <input
-                type="email"
-                id="email"
-                required
-                value={formdata.email || ''}
-                onChange={getdata}
-              /><br />
-              <label>Phone Number</label>
-              <input
-                type="number"
-                id="phone"
-                required
-                value={formdata.phone || ''}
-                onChange={getdata}
-              /><br />
-              <label>Date of Birth</label>
-              <input
-                type="date"
-                id="dob"
-                required
-                value={formdata.dob || ''}
-                onChange={getdata}
-              /><br />
-              <button className="submit-button">Submit</button>
-            </form>
-          </div>
-        </div>
-      )}
+  <div
+    className="modal"
+    onClick={(e) => {
+      if (e.target.className === 'modal') {
+        closeModal();
+      }
+    }}
+    data-testid="modal"
+  >
+    <div className="modal-content">
+      <h1>Fill Details</h1>
+      <form onSubmit={datahandler}>
+        <label>Username</label>
+        <input
+          type="text"
+          id="username"
+          required
+          value={formdata.username || ''}
+          onChange={getdata}
+        /><br />
+        <label>Email Address</label>
+        <input
+          type="email"
+          id="email"
+          required
+          value={formdata.email || ''}
+          onChange={getdata}
+        /><br />
+        <label>Phone Number</label>
+        <input
+          type="number"
+          id="phone"
+          required
+          value={formdata.phone || ''}
+          onChange={getdata}
+        /><br />
+        <label>Date of Birth</label>
+        <input
+          type="date"
+          id="dob"
+          required
+          value={formdata.dob || ''}
+          onChange={getdata}
+        /><br />
+        <button className="submit-button">Submit</button>
+      </form>
+    </div>
+  </div>
+)}
+
     </>
   );
 }
