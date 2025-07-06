@@ -128,7 +128,7 @@ const XModal = () => {
   const closeModal = () => setIsOpen(false);
 
   const handleOutsideClick = (e) => {
-    if (e.target.className === 'modal') {
+    if (e.target ===  e.currentTarget) {
       closeModal();
     }
   };
@@ -166,7 +166,7 @@ const XModal = () => {
     }
 
     setErrorMessage('');
-    closeModal(); // Close modal on successful submission
+    closeModal();
   };
 
   return (
