@@ -59,7 +59,7 @@ function App() {
   <div
     className="modal"
     onClick={(e) => {
-      if (e.target.className === 'modal') {
+      if (e.target === e.currentTarget) {
         closeModal();
       }
     }}
